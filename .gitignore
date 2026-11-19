@@ -52,3 +52,6 @@ Claude.md
 
 # Misc
 *.tsbuildinfo
+
+# Claude Code: approvazioni locali, possono contenere token
+.claude/settings.local.json
