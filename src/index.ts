@@ -464,6 +464,11 @@ function renderBrandedRootPage(domainName: string): string {
 
 // Export default object with both fetch (HTTP handler) and scheduled (cron handler)
 export default {
-  fetch: (request: Request, env: Env, ctx: ExecutionContext) => app.fetch(request, env, ctx),
+  fetch: (request: Request, env: Env, ctx: ExecutionContext) => {
+    // Migrazione su cre.cy: con HOST_CANONICO impostato, il vecchio indirizzo workers.dev manda tutto al dominio nuovo (301).
+    const u = new URL(request.url);
+    if (env.HOST_CANONICO && u.hostname.endsWith('.workers.dev')) return Response.redirect(`https://${env.HOST_CANONICO}${u.pathname}${u.search}`, 301);
+    return app.fetch(request, env, ctx);
+  },
   scheduled,
 };

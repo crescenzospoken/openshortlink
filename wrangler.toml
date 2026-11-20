@@ -2,6 +2,9 @@ name = "openshortlink"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
+# Dominio cre.cy (20/11/2026). Va aggiunto anche come dominio nella dashboard di openshortlink.
+routes = [{ pattern = "s.cre.cy", custom_domain = true }]
+
 
 
 # D1 Database
@@ -31,6 +34,8 @@ dataset = "openshortlink-analytics"
 
 # Environment variables
 [vars]
+# workers.dev fa 301 verso il dominio nuovo
+HOST_CANONICO = "s.cre.cy"
 ENVIRONMENT = "production"
 LOG_LEVEL = "info"
 CACHE_TTL = "604800"
