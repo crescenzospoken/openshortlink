@@ -218,6 +218,7 @@ export interface CachedLink {
 }
 
 export interface Env {
+  HOST_CANONICO?: string; // migrazione su cre.cy: workers.dev fa 301 verso questo host
   DB: D1Database;
   CACHE: KVNamespace;
   ANALYTICS: AnalyticsEngineDataset;
